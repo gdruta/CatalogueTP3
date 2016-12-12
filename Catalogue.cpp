@@ -41,7 +41,8 @@ void Catalogue::UiCatalog()
     while (bol)
     {
 		char* userInput=new char[MAX_LEN];
-        cout << "<a> pour affichage, <s> pour ajouer un trajet simple, <c> pour ajouer un trajet compose, <r> pour rechercher un parcours, <bye> pour finir" << endl;
+        cout << "<a> pour affichage, <s> pour ajouer un trajet simple, <c> pour ajouer un trajet compose";
+        cout<< " <r> pour rechercher un parcours,<save> pour sauvegarder,<load> pour charger, <bye> pour finir" << endl;
         cin.getline(userInput, MAX_LEN, '\n');
         if (strcmp(userInput, "a") == 0)
         {
@@ -58,39 +59,14 @@ void Catalogue::UiCatalog()
             catalog->AddTo(t);
         } else if(strcmp(userInput, "r") == 0)
         {
-            if (catalog->GetCardActuelle()==0)
-            {
-                cout<< " catalogue vide, pas de recherche posible"<<endl;
-            }else
-            {
-                char* pArr = new char[MAX_LEN];
-                char* pDep = new char[MAX_LEN];
-                bool bol;
-                bol=true;
-                while(bol)
-                {
-                    cout << "pt de depart du parcours:" << endl;
-                    cin.getline(pDep, MAX_LEN, '\n');
-                    if(StringValide(pDep))
-                        bol=false;
-                    else
-                        cout<< "le point introduit n'est pas valide, veuillez recommencer"<<endl;
-                    }
-                    bol=true;
-                    while(bol)
-                    {
-                        cout << "pt d'arrivee du parcours:" << endl;
-                        cin.getline(pArr, MAX_LEN, '\n');
-                        if(StringValide(pArr))
-                            bol=false;
-                        else
-                            cout<< "le point introduit n'est pas valide, veuillez recommencer"<<endl;
-                    }
-                    CalculerParcoursAvancee(pDep,pArr);
-                    delete [] pArr;
-                    delete [] pDep;
-                }
+            UiRecherche();
         }
+        else if (strcmp(userInput,"save"))
+        {
+		}
+		else if (strcmp(userInput,"load"))
+		{
+		}
         else if (strcmp(userInput, "bye") == 0)
         {
             bol=false;
@@ -229,6 +205,48 @@ Trajet* Catalogue::UiTrajetC()
     delete [] userInput;
      return t;
 } //----- Fin de M�thode
+
+void Catalogue::UiRecherche()
+{
+	if (catalog->GetCardActuelle()==0)
+		{
+			cout<< " catalogue vide, pas de recherche posible"<<endl;
+		}
+		else
+		{
+			char* pArr = new char[MAX_LEN];
+			char* pDep = new char[MAX_LEN];
+			bool bol;
+			bol=true;
+			while(bol)
+			{
+				cout << "pt de depart du parcours:" << endl;
+				cin.getline(pDep, MAX_LEN, '\n');
+				if(StringValide(pDep))
+					bol=false;
+				else
+					cout<< "le point introduit n'est pas valide, veuillez recommencer"<<endl;
+			}
+			bol=true;
+			while(bol)
+			{
+				cout << "pt d'arrivee du parcours:" << endl;
+				cin.getline(pArr, MAX_LEN, '\n');
+				if(StringValide(pArr))
+					bol=false;
+				else
+					cout<< "le point introduit n'est pas valide, veuillez recommencer"<<endl;
+				}
+				CalculerParcoursAvancee(pDep,pArr);
+				delete [] pArr;
+				delete [] pDep;
+		}
+}
+
+int Catalogue::UiScenario()
+{
+	string userInput="";
+}
 
 bool Catalogue::StringValide(const char*str)
 {

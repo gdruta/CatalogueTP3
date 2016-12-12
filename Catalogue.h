@@ -81,7 +81,19 @@ protected:
 	// permet la saisie(user input) dans la console d'un trajet compose
 	// Contrat :
 	//
-
+	
+	void UiRecherche();
+	// Mode d'emploi :
+	// permet la saisie(user input) dans la console d'une recherche
+	// Contrat :
+	//
+	
+	int UiScenario();
+	// Mode d'emploi :
+	// permet la saisie(user input) dans la console d'un scenario de save ou load
+	// Contrat :
+	//
+	
 	bool StringValide(const char * str);
 	// Mode d'emploi :
 	// parametre char *str-un string a verifier
