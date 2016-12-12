@@ -94,6 +94,18 @@ protected:
 	// Contrat :
 	//
 	
+	string UiFichier();
+	// Mode d'emploi :
+	// permet la saisie(user input) dans la console du scenario 1 de save ou load
+	// Contrat :
+	//
+	
+	void Save(string filename);
+	// Mode d'emploi :
+	// permet la sauvegarde1 dans un fichier 
+	// Contrat :
+	//
+	
 	bool StringValide(const char * str);
 	// Mode d'emploi :
 	// parametre char *str-un string a verifier

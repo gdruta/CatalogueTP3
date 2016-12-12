@@ -9,7 +9,7 @@
 //---------------------------------------------------------------- INCLUDE
 //-------------------------------------------------------- Include syst�me
 using namespace std;
-#include <iostream>
+#include <fstream>
 
 //------------------------------------------------------ Include personnel
 #include "Catalogue.h"
@@ -63,9 +63,16 @@ void Catalogue::UiCatalog()
         }
         else if (strcmp(userInput,"save"))
         {
+			int scenario=UiScenario();
+			string fichier=UiFichier();
+			switch (scenario)
+			{
+				case 1:Save(fichier);
+			}
 		}
 		else if (strcmp(userInput,"load"))
 		{
+			int scenario=UiScenario();
 		}
         else if (strcmp(userInput, "bye") == 0)
         {
@@ -245,7 +252,41 @@ void Catalogue::UiRecherche()
 
 int Catalogue::UiScenario()
 {
-	string userInput="";
+	bool bol=true;
+	unsigned int userInput;
+	while(bol)
+	{
+		cout<<"choisisez une option(1,2,3 ou 4)"<<endl;
+		cout<<"1.sans critere"<<endl;
+		cout<<"2.selon le type de trajet"<<endl;
+		cout<<"3.selon la ville de depart et/ou la ville d'arrivee"<<endl;
+		cout<<"4.selon un intervale"<<endl;
+		cin>>userInput;
+		if((userInput<=4)&&(userInput>0))
+		{
+			bol=false;
+		}
+		else if(cin.fail())
+		{
+			cin.clear();
+			cin.ignore();
+			cout<<"vous n'avez pas introduit une option valide, veuillez recomencer"<<endl;
+		}
+	}
+	return userInput;	
+}
+
+string Catalogue::UiFichier()
+{
+	cout<<"saisisez le nom de fichier"<<endl;
+	string fichier;
+	getline(cin,fichier);
+	return fichier;
+}
+
+void Catalogue::Save(string filename)
+{
+	
 }
 
 bool Catalogue::StringValide(const char*str)
